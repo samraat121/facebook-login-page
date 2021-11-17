@@ -1,8 +1,9 @@
 import React,{useState} from 'react'
 
-import { Route, Link } from "react-router-dom";
+import { Route, Link, useHistory  } from "react-router-dom";
 import './Home.css'
 function Registration() {
+    const history = useHistory()
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
@@ -31,6 +32,7 @@ function Registration() {
         }
         users.push(newuser)
         localStorage.setItem('users', JSON.stringify(users))
+        history.push('/')
     }
 
     return (

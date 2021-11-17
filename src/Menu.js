@@ -1,6 +1,12 @@
 import React from 'react'
-import {  Route, Link } from "react-router-dom";
+import {  Route, Link, useHistory } from "react-router-dom";
 function Menu() {
+    const history = useHistory();
+    const logOutUser = () => {
+        console.log('Hello logout')
+        localStorage.removeItem('loggedin')
+        history.push('/register')
+    }
     return (
         <div>
             <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -22,9 +28,25 @@ function Menu() {
                         </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
-                        <Link className="btn btn-outline-success m-2 my-sm-0" to="/">Login</Link>
-                        <Link className="btn btn-outline-success m-2 my-sm-0" to="/register">Registration</Link>
-                        <Link className="btn btn-outline-success m-2 my-sm-0" to="/dashboard">Dashboard</Link>
+                        {
+                            (()=>{
+                                if (localStorage.getItem('loggedin')) {
+                                    return(
+                                        <div>
+                                            <Link className="btn btn-outline-success m-2 my-sm-0" to="/dashboard">Dashboard</Link>
+                                            <button onClick={logOutUser} className="btn btn-outline-danger m-2 my-sm-0">Logout</button>
+                                        </div>
+                                    ) 
+                                } else {
+                                    return(
+                                        <div>         
+                                            <Link className="btn btn-outline-success m-2 my-sm-0" to="/">Login</Link>
+                                            <Link className="btn btn-outline-success m-2 my-sm-0" to="/register">Registration</Link>
+                                        </div>
+                                    )
+                                }
+                            })()
+                        }
                     </form>
                 </div>
             </nav>
