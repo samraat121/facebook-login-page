@@ -9,6 +9,20 @@ function Home() {
     const LoginSubmit = (event) => {
         event.preventDefault();
         console.log('hello')
+
+        var users = JSON.parse(localStorage.getItem('users'))
+        var i = 0;
+        for (var user of users) {
+            if (user.email === email && user.password === password) {
+                i++
+            }
+            
+        }
+        if (i == 1) {
+            alert('Login is Successfullly')
+        }else{
+            alert('Invadild Login Info');
+        }
     }
     return (
         <div>
