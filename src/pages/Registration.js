@@ -11,6 +11,26 @@ function Registration() {
     const RegisterForm = (event) => {
         event.preventDefault();
         console.log('Hello Register user');
+        /*
+        var newuser = {
+            name:name,
+            email:email,
+            phone:phone,
+            password:password
+        }
+        localStorage.setItem('users', JSON.stringify(newuser))
+        */
+
+
+        var users = JSON.parse(localStorage.getItem('users') || "[]")
+        var newuser = {
+            name:name,
+            email:email,
+            phone:phone,
+            password:password
+        }
+        users.push(newuser)
+        localStorage.setItem('users', JSON.stringify(users))
     }
 
     return (
