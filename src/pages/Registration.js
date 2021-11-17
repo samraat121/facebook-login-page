@@ -1,8 +1,18 @@
-import React from 'react'
+import React,{useState} from 'react'
 
 import { Route, Link } from "react-router-dom";
 import './Home.css'
 function Registration() {
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [password, setPassword] = useState('')
+
+    const RegisterForm = (event) => {
+        event.preventDefault();
+        console.log('Hello Register user');
+    }
+
     return (
         <div>
             <div className="global-container">
@@ -10,23 +20,23 @@ function Registration() {
                     <div className="card-body">
                         <h3 className="card-title text-center">Log in to with Core Learners</h3>
                         <div className="card-text">
-                            <form>
+                            <form onSubmit={RegisterForm}> 
                                 <div className="form-group">
-                                    <label for="exampleInputName">Name</label>
-                                    <input type="text" className="form-control form-control-sm" id="exampleInputName" />
+                                    <label htmlFor="exampleInputName">Name</label>
+                                    <input type="text" className="form-control form-control-sm" id="exampleInputName" onChange={(e)=>{setName(e.target.value)}} value={name} />
                                 </div>
                                 <div className="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" className="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                    <label htmlFor="exampleInputEmail1">Email address</label>
+                                    <input type="email" className="form-control form-control-sm" id="exampleInputEmail1" onChange={(e)=>{setEmail(e.target.value)}} value={email}  />
                                 </div>
                                 <div className="form-group">
-                                    <label for="exampleInputPhone">Phone Number</label>
-                                    <input type="number" className="form-control form-control-sm" id="exampleInputPhone" />
+                                    <label htmlFor="exampleInputPhone">Phone Number</label>
+                                    <input type="number" className="form-control form-control-sm" id="exampleInputPhone" onChange={(e)=>{setPhone(e.target.value)}} value={phone} />
                                 </div>
                                 <div className="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
+                                    <label htmlFor="exampleInputPassword1">Password</label>
                                     <Link to="/" style={{float:'right',fontSize:'12px'}}>Forgot password?</Link>
-                                    <input type="password" className="form-control form-control-sm" id="exampleInputPassword1" />
+                                    <input type="password" className="form-control form-control-sm" id="exampleInputPassword1" onChange={(e)=>{setPassword(e.target.value)}} value={password} />
                                 </div>
                                 <button type="submit" className="btn btn-primary btn-block">Sign in</button>
                                 
